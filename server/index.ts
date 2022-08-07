@@ -10,12 +10,12 @@ const app = express();
 app.use(express.json());
 
 // GET API for all the fetching all employees' data
-app.get('/all-employees', (req: any, res: any) => {
+app.get('/all-employees', (req: any, res: Response) => {
   res.send(employees);
 });
 
 // GET API for fetching employees' data based on ID
-app.get('/employee/:id', (req: any, res: any) => {
+app.get('/employee/:id', (req: Request, res: Response) => {
   const { id } = req.params;
   const filteredEmployee = employees.filter((employee) => employee.id === parseInt(id));
   res.send(filteredEmployee);
@@ -49,6 +49,4 @@ app.delete('/delete-employee/:id', (req: Request, res: Response) => {
 });
 
 // express server started on port:3000
-app.listen(3000, () => {
-  console.log('The application is listening on port 3000!');
-});
+app.listen(3000);
